@@ -6,7 +6,8 @@ const NAME_SITE = "css-tricks",
     API_WP      = `${SITE}/wp/v2`,
     POSTS       = `${API_WP}/posts?_embed`,
     POST        = `${API_WP}/posts`,
-    SEARCH      = `${API_WP}/search?_embed&search=`;
+    SEARCH      = `${API_WP}/search?_embed&search=`,
+    CATEGORIES  = `${API_WP}/categories`;
 
     export default {
         NAME_SITE,
@@ -15,5 +16,6 @@ const NAME_SITE = "css-tricks",
         API_WP,
         POSTS,
         POST,
-        SEARCH
+        SEARCH,
+        CATEGORIES
     }
