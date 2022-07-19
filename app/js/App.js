@@ -1,21 +1,14 @@
 import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
+import { Title } from "../components/Title.js";
+import { Loader } from "../components/Loader.js";
 
 export function App() {
+    const d = document;
+    const $root = d.getElementById("root");
 
-    ajax({
-        url: api.POSTS,
-        cbSuccess: (posts) => {
-            console.log(posts);
-        }
-    })
-    
-    ajax({
-        url: api.CATEGORIES,
-        cbSuccess: (categories) => {
-            console.log(categories);
-        }
-    })
+    $root.appendChild(Title());
+    $root.appendChild(Loader());
 
-    console.log(api);
+
 }
