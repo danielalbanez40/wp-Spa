@@ -10,7 +10,7 @@ export function PostCard(props) {
             <img src="${urlPoster}" alt="${title.rendered}" />
             <h2>${title.rendered}</h2>
             <p>
-                <time datetime="">Fecha: ${dateformat}</time>
+                <time datetime="">${dateformat}</time>
                 <a href="#/${slug}" class="publicacion">Ver Publicación</a>
             </p>
         </article>
