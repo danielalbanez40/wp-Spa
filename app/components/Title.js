@@ -5,7 +5,7 @@ export function Title() {
     const $h1 = document.createElement('h1');
 
     $h1.innerHTML = `
-        <a href="${api.DOMAIN}" target="_blank" rel="noopener" class=""> 
+        <a href="${api.DOMAIN}" target="_blank" rel="noopener" class="title"> 
             ${api.NAME_SITE.toUpperCase()} 
         </a>
     `;
