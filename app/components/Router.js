@@ -32,7 +32,20 @@ export async function Router() {
     
     
   } else if (hash.includes("#/search")) {
-    $main.innerHTML = "<h2> Vista del Buscador </h2>";
+
+    let query = localStorage.getItem("wpSearch");
+
+    if (!query) return false;
+
+    await ajax({
+      url: `${api.SEARCH}${query}`,
+      cbSuccess: (search) => {
+        console.log(search);
+        // $main.innerHTML = Post(post);
+      },
+    });
+    
+    // $main.innerHTML = "<h2> Vista del Buscador </h2>";
     // d.querySelector(".loader").style.display = "none";
   } else {
     $main.innerHTML = "<h2> Acá se carga elcontenido elcontenido del post seleccionado </h2>";
@@ -40,7 +53,7 @@ export async function Router() {
     await ajax({
       url: `${api.POST}/${localStorage.getItem("wpPostId")}`,
       cbSuccess: (post) => {
-        console.log(post);
+        // console.log(post);
         $main.innerHTML = Post(post);
         
       },
