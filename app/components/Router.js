@@ -2,6 +2,7 @@ import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
 import { Post } from "./Post.js";
+import { SearchCard } from "./SearchCard.js";
 
 export async function Router() {
   
@@ -35,20 +36,37 @@ export async function Router() {
 
     let query = localStorage.getItem("wpSearch");
 
-    if (!query) return false;
+    if (!query) {
+      d.querySelector(".loader").style.display = "none";
+      return false;
+    }
 
     await ajax({
       url: `${api.SEARCH}${query}`,
       cbSuccess: (search) => {
         console.log(search);
-        // $main.innerHTML = Post(post);
+        let html = "";
+
+        if (search.length === 0) {
+          
+          html = `
+            <p class="error"> 
+              Oops! No pudimos encontrar lo que buscas! El término <mark>'${query}'</mark> no existe  
+            </p>
+          `;
+
+        }else {
+          search.forEach((post) => (html += SearchCard(post)));
+        }
+
+        $main.innerHTML = html;
       },
     });
     
     // $main.innerHTML = "<h2> Vista del Buscador </h2>";
     // d.querySelector(".loader").style.display = "none";
   } else {
-    $main.innerHTML = "<h2> Acá se carga elcontenido elcontenido del post seleccionado </h2>";
+    // $main.innerHTML = "<h2> Acá se carga elcontenido elcontenido del post seleccionado </h2>";
    
     await ajax({
       url: `${api.POST}/${localStorage.getItem("wpPostId")}`,
